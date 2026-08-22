@@ -11,8 +11,8 @@ export function registerContractTools(server, user) {
     user,
     "generate_contract",
     {
-      title: "Generate a staffing agreement",
-      description: "Generate a draft Independent Contractor / Staffing Agreement between Hoorbit LLC and a developer for a project engagement.",
+      title: "Generate a placement facilitation agreement",
+      description: "Generate a draft agreement covering Hoorbit's placement/facilitation service for a developer joining a client project. This is NOT an employment contract issued by Hoorbit — the working relationship is between the developer and the hiring company (or that company's own EOR); this document covers the facilitation terms (match, rate, commission) Hoorbit administers.",
       inputSchema: {
         developer_id: z.string(),
         project_id: z.string(),
@@ -40,8 +40,8 @@ export function registerContractTools(server, user) {
       return {
         success: true,
         contract_id: contract.id,
-        parties: { contractor: developer.name, engaging_entity: COMPANY.legal_name },
-        terms_summary: `${a.position} on "${project.title}" — ${fmtMoney(a.salary_monthly, a.currency)}/month, ${a.start_date} through ${a.end_date}.`,
+        parties: { developer: developer.name, hiring_company: project.client_name, facilitated_by: `${COMPANY.legal_name} (placement facilitator — not the employer)` },
+        terms_summary: `${a.position} on "${project.title}" for ${project.client_name}, facilitated by Hoorbit — ${fmtMoney(a.salary_monthly, a.currency)}/month, ${a.start_date} through ${a.end_date}.`,
         status: "draft — awaiting conditions/signatures",
         disclaimer: NOT_LEGAL_ADVICE,
       };
@@ -76,7 +76,7 @@ export function registerContractTools(server, user) {
     "sign_contract",
     {
       title: "Sign a contract (e-signature)",
-      description: "Record an e-signature from either party. Once both the developer and Hoorbit have signed, the contract status flips to 'signed'.",
+      description: "Record an e-signature from either party. 'hoorbit' signs as the facilitator (not as employer) confirming the placement terms; once both the developer and Hoorbit have signed, the contract status flips to 'signed'.",
       inputSchema: { contract_id: z.string(), party: z.enum(["developer", "hoorbit"]), signer_name: z.string() },
       mutating: { entityType: "contract", idParam: "contract_id" },
     },
@@ -175,7 +175,7 @@ export function registerContractTools(server, user) {
         success: true, contract_id: a.contract_id, reason: a.reason, daily_rate: round2(dailyRate),
         notice_days_owed: a.notice_days_owed, severance_amount: payable, currency: contract.currency,
         formatted: fmtMoney(payable, contract.currency, 2),
-        disclaimer: NOT_LEGAL_ADVICE + " Severance entitlement, if any, depends on the contractor's actual jurisdiction and the cause for termination — this formula is a simplified placeholder.",
+        disclaimer: NOT_LEGAL_ADVICE + " Severance entitlement, if any, is typically owed by the hiring company (or its EOR), not by Hoorbit, and depends on the contractor's actual jurisdiction and the cause for termination — this is a simplified facilitation estimate, not a payable Hoorbit is issuing.",
       };
     }
   );

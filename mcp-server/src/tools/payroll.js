@@ -91,7 +91,7 @@ export function registerPayrollTools(server, user) {
     "generate_pay_stub",
     {
       title: "Generate pay stub",
-      description: "Generate (and persist) a detailed pay stub for a developer for a given month.",
+      description: "Generate (and persist) a detailed pay stub for a developer for a given month, on behalf of the hiring company. This is payroll administration Hoorbit facilitates for the client — Hoorbit is not the employer of record and this is not a substitute for the client's (or their EOR's) own statutory payroll filings.",
       inputSchema: { developer_id: z.string(), month: z.string().describe("YYYY-MM"), other_deductions: z.number().default(0) },
       mutating: { entityType: "payroll", idParam: "developer_id" },
     },
@@ -111,7 +111,7 @@ export function registerPayrollTools(server, user) {
       update("developers", (rows) => rows.map((d) => (d.id === a.developer_id ? { ...d, total_earned_usd: round2(d.total_earned_usd + convert(net.net_pay, d.current_rate_currency, "USD")) } : d)));
       update("onboarding", (rows) => rows.map((o) => (o.developer_id === a.developer_id ? { ...o, checklist: { ...o.checklist, first_payslip_generated: true } } : o)));
 
-      return { success: true, pay_stub_id: stub.id, ...stub, formatted_net_pay: fmtMoney(stub.net_pay, stub.currency, 2), note: `Simulated payslip email sent to ${developer.email}.` };
+      return { success: true, pay_stub_id: stub.id, ...stub, formatted_net_pay: fmtMoney(stub.net_pay, stub.currency, 2), note: `Simulated payslip email sent to ${developer.email}.`, disclaimer: NOT_LEGAL_ADVICE };
     }
   );
 

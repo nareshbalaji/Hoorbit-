@@ -6,6 +6,14 @@ recruitment, contracts, onboarding, insurance, payroll, invoicing, compliance, d
 built on [`@modelcontextprotocol/sdk`](https://github.com/modelcontextprotocol/typescript-sdk), with real
 role-based authn/authz enforced on every call.
 
+**Hoorbit is a facilitator, not an employer of record and not an insurance carrier.** It matches
+developers with hiring companies and administers the paperwork/invoicing/insurance-enrollment around that
+match for a commission — it does not itself employ developers or issue insurance policies. The working
+relationship is between the developer and the hiring company (or that company's own licensed EOR); insurance
+is underwritten by a licensed third-party partner. See `FACILITATOR_MODEL` in `src/lib/constants.js` — every
+contract/offer/payslip/insurance tool response carries this framing rather than implying direct employment
+or direct insurance issuance.
+
 This is a genuine MCP server (`initialize` / `tools/list` / `tools/call` over JSON-RPC 2.0) — not a plain
 REST API. It's the real implementation of a set of docs that were uploaded describing a 45–56 "tool"
 platform; that version was actually a plain Express REST API with most endpoints unimplemented and a
@@ -161,6 +169,10 @@ Concretely, this server:
   instruments. A real deployment needs licensed counsel and compliance review per jurisdiction —
   including Delaware entity requirements and, for Malaysia-linked payment flows, Bank Negara Malaysia's
   RMiT framework.
+- **Is not an employer and not an insurer.** Hoorbit facilitates the match and administers paperwork for a
+  commission; it does not employ developers directly (that relationship is with the hiring company or its
+  EOR) and does not underwrite insurance (that's a licensed third-party partner). Every relevant tool's
+  output says this explicitly — don't let a summary drop it.
 - **Auth is real but static.** The tool-level/row-level/field-level enforcement described above genuinely
   runs on every call — it's not decorative. What's *not* real is the identity provider behind it: static
   demo tokens with no expiry/rotation/hashing, checked in to the seed data. Swap `resolveToken()` for a

@@ -3,7 +3,7 @@ import { read, update, findById } from "../db.js";
 import { defineTool, notFound } from "../lib/toolkit.js";
 import { uid, nowISO } from "../lib/ids.js";
 import { fmtMoney } from "../lib/currency.js";
-import { ONBOARD_ITEMS, COMPANY, NOT_LEGAL_ADVICE, NO_REAL_MONEY_MOVES, COPYRIGHT_LINE } from "../lib/constants.js";
+import { ONBOARD_ITEMS, COMPANY, NOT_LEGAL_ADVICE, NO_REAL_MONEY_MOVES, COPYRIGHT_LINE, FACILITATOR_MODEL } from "../lib/constants.js";
 
 export function registerOnboardingTools(server, user) {
   defineTool(
@@ -115,7 +115,7 @@ export function registerOnboardingTools(server, user) {
     "generate_offer_letter",
     {
       title: "Generate offer letter",
-      description: "Generate the text of a formal offer letter from a draft or signed contract.",
+      description: "Generate the text of a formal offer letter from a draft or signed contract. The offer is issued for the client company's project and facilitated by Hoorbit — not an offer of employment by Hoorbit itself.",
       inputSchema: { contract_id: z.string() },
       mutating: { entityType: "contract", idParam: "contract_id" },
     },
@@ -128,14 +128,16 @@ export function registerOnboardingTools(server, user) {
       const letter =
         `${COMPANY.legal_name}\n${COMPANY.address}\n${COMPANY.website}\n\n` +
         `Dear ${developer.name},\n\n` +
-        `On behalf of ${COMPANY.legal_name}, we are pleased to offer you an engagement as ${contract.position} on the "${project.title}" project ` +
-        `for ${project.client_name}, delivered under a Hoorbit-managed staffing agreement.\n\n` +
+        `${COMPANY.legal_name} is pleased to confirm your placement as ${contract.position} on the "${project.title}" project ` +
+        `for ${project.client_name}. Hoorbit facilitated this match and administers the paperwork/invoicing around it; ` +
+        `${project.client_name} (or its designated Employer-of-Record) is the party you are actually engaged by.\n\n` +
         `Rate: ${fmtMoney(contract.salary_monthly, contract.currency)} / month\n` +
         `Start date: ${contract.start_date}\nEnd date (est.): ${contract.end_date}\n\n` +
-        `This offer is contingent on execution of the Hoorbit Staffing Agreement, a satisfactory background check, and submission of tax/banking documentation.\n\n` +
+        `This placement is contingent on execution of the Hoorbit Placement Facilitation Agreement, a satisfactory background check, and submission of tax/banking documentation. ` +
+        `Hoorbit LLC is a staffing facilitator, not an employer of record — see the attached disclaimer for what that does and doesn't mean.\n\n` +
         `We look forward to having you on the team.\n\nHoorbit LLC — Talent Operations\n\n${COPYRIGHT_LINE}`;
 
-      return { success: true, contract_id: a.contract_id, developer: developer.name, position: contract.position, letter_text: letter, disclaimer: NOT_LEGAL_ADVICE };
+      return { success: true, contract_id: a.contract_id, developer: developer.name, position: contract.position, letter_text: letter, disclaimer: NOT_LEGAL_ADVICE, facilitator_model: FACILITATOR_MODEL };
     }
   );
 }
