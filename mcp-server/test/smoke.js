@@ -32,15 +32,20 @@ function parse(result) {
   return { raw: result, json: text ? JSON.parse(text) : null, isError: !!result.isError };
 }
 
-async function main() {
-  const transport = new StdioClientTransport({ command: "node", args: ["bin/stdio.js"], cwd: ROOT, stderr: "inherit" });
+async function connectAs(token) {
+  const transport = new StdioClientTransport({ command: "node", args: ["bin/stdio.js"], cwd: ROOT, stderr: "inherit", env: { ...process.env, HOORBIT_TOKEN: token || "" } });
   const client = new Client({ name: "hoorbit-smoke-test", version: "1.0.0" });
   await client.connect(transport);
+  return client;
+}
+
+async function main() {
+  const client = await connectAs("hoorbit_pm_naresh");
 
   console.log("\n=== tools/list ===");
   const list = await client.listTools();
   console.log(`Tool count: ${list.tools.length}`);
-  check("registers 56 tools", list.tools.length === 56, list.tools.map((t) => t.name));
+  check("registers 57 tools (56 + whoami)", list.tools.length === 57, list.tools.map((t) => t.name));
   const names = list.tools.map((t) => t.name);
   const EXPECTED = [
     "post_job", "search_developers", "apply_for_job", "enable_auto_apply", "get_match_score", "get_developer_profile", "bulk_import_developers", "create_candidate_pipeline",
@@ -52,6 +57,7 @@ async function main() {
     "verify_labor_law_compliance", "generate_compliance_report", "store_compliance_records", "audit_trail", "data_security_encryption",
     "get_company_dashboard", "get_developer_dashboard", "get_admin_dashboard", "generate_analytics_report", "export_data_csv", "generate_business_intelligence",
     "send_notification", "create_support_ticket", "generate_dispute_resolution",
+    "whoami",
   ];
   for (const name of EXPECTED) check(`tool present: ${name}`, names.includes(name));
 
@@ -179,6 +185,74 @@ async function main() {
   }
 
   await client.close();
+
+  console.log("\n=== auth: unauthenticated ===");
+  {
+    const anon = await connectAs(null);
+    const anonList = await anon.listTools();
+    check("unauthenticated: tools/list still works (discovery)", anonList.tools.length === 57);
+    const denied = parse(await anon.callTool({ name: "get_admin_dashboard", arguments: { currency: "USD" } }));
+    check("unauthenticated: tools/call is denied", denied.isError === true && denied.json.unauthorized === true, denied.json);
+    const who = parse(await anon.callTool({ name: "whoami", arguments: {} }));
+    check("unauthenticated: whoami reports not authenticated", who.json.authenticated === false, who.json);
+    await anon.close();
+  }
+
+  console.log("\n=== auth: employer scoping ===");
+  {
+    const hsbc = await connectAs("hoorbit_employer_client_001"); // Amanda Wright, HSBC
+    const who = parse(await hsbc.callTool({ name: "whoami", arguments: {} }));
+    check("employer whoami reports employer role", who.json.role === "employer" && who.json.linked_id === "client_001", who.json);
+
+    const ownDash = parse(await hsbc.callTool({ name: "get_company_dashboard", arguments: { client_id: "client_001" } }));
+    check("employer can view own company dashboard", ownDash.json.success === true, ownDash.json);
+
+    const otherDash = parse(await hsbc.callTool({ name: "get_company_dashboard", arguments: { client_id: "client_002" } }));
+    check("employer cannot view another company's dashboard", otherDash.isError === true && otherDash.json.unauthorized === true, otherDash.json);
+
+    const deniedTool = parse(await hsbc.callTool({ name: "generate_invoice_to_company", arguments: { project_id: "project_001", month: "2099-01" } }));
+    check("employer cannot call financial/billing tools", deniedTool.isError === true && deniedTool.json.unauthorized === true, deniedTool.json);
+
+    const deniedProfile = parse(await hsbc.callTool({ name: "get_developer_profile", arguments: { developer_id: "dev_001" } }));
+    check("employer cannot call get_developer_profile at all", deniedProfile.isError === true && deniedProfile.json.unauthorized === true, deniedProfile.json);
+    await hsbc.close();
+  }
+
+  console.log("\n=== auth: developer scoping + field redaction ===");
+  {
+    const raj = await connectAs("hoorbit_developer_dev_001"); // Rajesh Sharma
+    const ownProfile = parse(await raj.callTool({ name: "get_developer_profile", arguments: { developer_id: "dev_001" } }));
+    check("developer viewing own profile sees real bank_account", ownProfile.json.success && ownProfile.json.developer.bank_account !== "[redacted — not visible to your role]", ownProfile.json);
+
+    const otherProfile = parse(await raj.callTool({ name: "get_developer_profile", arguments: { developer_id: "dev_002" } }));
+    check("developer cannot view another developer's profile", otherProfile.isError === true, otherProfile.json);
+
+    const otherSalary = parse(await raj.callTool({ name: "calculate_gross_salary", arguments: { developer_id: "dev_002" } }));
+    check("developer cannot calculate another developer's salary", otherSalary.isError === true && otherSalary.json.unauthorized === true, otherSalary.json);
+    await raj.close();
+  }
+
+  console.log("\n=== auth: support sees redacted profile, no billing ===");
+  {
+    const priya = await connectAs("hoorbit_support_priya");
+    const redacted = parse(await priya.callTool({ name: "get_developer_profile", arguments: { developer_id: "dev_001" } }));
+    check("support can look up a profile but bank_account is redacted", redacted.json.success && redacted.json.developer.bank_account === "[redacted — not visible to your role]", redacted.json);
+
+    const deniedInvoice = parse(await priya.callTool({ name: "generate_invoice_to_company", arguments: { project_id: "project_001", month: "2099-02" } }));
+    check("support cannot generate invoices", deniedInvoice.isError === true && deniedInvoice.json.unauthorized === true, deniedInvoice.json);
+    await priya.close();
+  }
+
+  console.log("\n=== auth: recruiter can run recruiting tools, not financials ===");
+  {
+    const aisha = await connectAs("hoorbit_recruiter_aisha");
+    const search = parse(await aisha.callTool({ name: "search_developers", arguments: { skills: ["RPG"] } }));
+    check("recruiter can search developers", search.json.success === true, search.json);
+
+    const deniedPayroll = parse(await aisha.callTool({ name: "process_payroll", arguments: { month: "2099-03" } }));
+    check("recruiter cannot process payroll", deniedPayroll.isError === true && deniedPayroll.json.unauthorized === true, deniedPayroll.json);
+    await aisha.close();
+  }
 
   console.log(`\n${pass} passed, ${fail} failed.`);
   if (fail > 0) process.exit(1);

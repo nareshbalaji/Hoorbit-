@@ -14,20 +14,30 @@ const server = app.listen(0, async () => {
   const port = server.address().port;
   try {
     const url = new URL(`http://127.0.0.1:${port}/mcp`);
-    const transport = new StreamableHTTPClientTransport(url);
+    const authed = new StreamableHTTPClientTransport(url, { requestInit: { headers: { Authorization: "Bearer hoorbit_pm_naresh" } } });
     const client = new Client({ name: "http-smoke-test", version: "1.0.0" });
-    await client.connect(transport);
+    await client.connect(authed);
 
     const list = await client.listTools();
     console.log(`HTTP transport: tool count = ${list.tools.length}`);
-    if (list.tools.length !== 56) throw new Error(`expected 56 tools, got ${list.tools.length}`);
+    if (list.tools.length !== 57) throw new Error(`expected 57 tools, got ${list.tools.length}`);
 
     const result = await client.callTool({ name: "get_admin_dashboard", arguments: { currency: "USD" } });
     const parsed = JSON.parse(result.content[0].text);
-    console.log("HTTP transport: get_admin_dashboard success =", parsed.success);
-    if (!parsed.success) throw new Error("get_admin_dashboard did not succeed over HTTP transport");
+    console.log("HTTP transport: get_admin_dashboard (authed) success =", parsed.success);
+    if (!parsed.success) throw new Error("get_admin_dashboard did not succeed over HTTP transport with a valid token");
 
     await client.close();
+
+    // Unauthenticated request over the same HTTP endpoint must be denied.
+    const anonTransport = new StreamableHTTPClientTransport(url);
+    const anonClient = new Client({ name: "http-smoke-test-anon", version: "1.0.0" });
+    await anonClient.connect(anonTransport);
+    const anonResult = await anonClient.callTool({ name: "get_admin_dashboard", arguments: { currency: "USD" } });
+    const anonParsed = JSON.parse(anonResult.content[0].text);
+    console.log("HTTP transport: unauthenticated call isError =", anonResult.isError === true, "unauthorized =", anonParsed.unauthorized === true);
+    if (anonResult.isError !== true || anonParsed.unauthorized !== true) throw new Error("unauthenticated HTTP call should have been denied");
+    await anonClient.close();
     console.log("HTTP TRANSPORT SMOKE TEST: PASS");
     server.close(() => process.exit(0));
   } catch (err) {

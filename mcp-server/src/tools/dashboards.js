@@ -14,9 +14,10 @@ function toCsv(rows) {
   return [cols.join(","), ...rows.map((r) => cols.map((c) => esc(r[c])).join(","))].join("\n");
 }
 
-export function registerDashboardTools(server) {
+export function registerDashboardTools(server, user) {
   defineTool(
     server,
+    user,
     "get_company_dashboard",
     {
       title: "Get company (client) dashboard",
@@ -41,6 +42,7 @@ export function registerDashboardTools(server) {
 
   defineTool(
     server,
+    user,
     "get_developer_dashboard",
     {
       title: "Get developer dashboard",
@@ -64,6 +66,7 @@ export function registerDashboardTools(server) {
 
   defineTool(
     server,
+    user,
     "get_admin_dashboard",
     {
       title: "Get admin/owner dashboard",
@@ -99,6 +102,7 @@ export function registerDashboardTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_analytics_report",
     {
       title: "Generate an analytics report",
@@ -127,6 +131,7 @@ export function registerDashboardTools(server) {
 
   defineTool(
     server,
+    user,
     "export_data_csv",
     {
       title: "Export data as CSV",
@@ -141,6 +146,7 @@ export function registerDashboardTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_business_intelligence",
     {
       title: "Generate business-intelligence insights",

@@ -4,9 +4,10 @@ import { defineTool, notFound } from "../lib/toolkit.js";
 import { uid, nowISO } from "../lib/ids.js";
 import { NOT_LEGAL_ADVICE } from "../lib/constants.js";
 
-export function registerComplianceTools(server) {
+export function registerComplianceTools(server, user) {
   defineTool(
     server,
+    user,
     "verify_labor_law_compliance",
     {
       title: "Verify labor-law compliance",
@@ -30,6 +31,7 @@ export function registerComplianceTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_compliance_report",
     {
       title: "Generate compliance report",
@@ -63,6 +65,7 @@ export function registerComplianceTools(server) {
 
   defineTool(
     server,
+    user,
     "store_compliance_records",
     {
       title: "Store a compliance record",
@@ -79,6 +82,7 @@ export function registerComplianceTools(server) {
 
   defineTool(
     server,
+    user,
     "audit_trail",
     {
       title: "Read the audit trail",
@@ -95,24 +99,27 @@ export function registerComplianceTools(server) {
 
   defineTool(
     server,
+    user,
     "data_security_encryption",
     {
       title: "Data security & encryption status",
       description: "Report what's masked/protected in this demo database (bank accounts and tax IDs are stored pre-masked; this is a demo status report, not a real security audit).",
       inputSchema: {},
     },
-    async () => ({
+    async (_a, user) => ({
       success: true,
       status: "demo environment — illustrative only",
+      you_are: user ? `${user.name} (${user.role})` : "unauthenticated",
       protections_in_this_demo: [
+        "Every tool call is authorized server-side against a bearer token (see whoami) — role-based allow-lists, row-level ownership checks (e.g. an employer can only see their own client_id), and field-level redaction (e.g. bank_account/tax_id hidden from non-owners) are enforced in src/lib/auth.js, not left to a UI to hide.",
         "Bank account numbers are stored pre-masked (last 4 digits only) — no full account numbers exist in this database.",
-        "Tax ID fields are partially masked in seed data.",
+        "Tax ID fields are partially masked in seed data, and further redacted per-viewer by role.",
         "No real payment credentials, OAuth tokens, or banking rails are present or reachable from this server.",
       ],
       not_implemented_in_this_demo: [
         "At-rest encryption of the JSON database files (they are plain JSON on disk).",
         "Field-level encryption / KMS integration.",
-        "Access-control enforcement inside the MCP server itself (any client with a connection can call any tool) — production Hoorbit systems would layer real authn/authz (see the Hoorbit Console artifact's role-based login for how that boundary is modeled).",
+        "Real identity provider: auth here is a static demo token directory (src/lib/auth.js), not OAuth/JWT with expiry, rotation, or a real user-management system. A production deployment should replace resolveToken() with real IdP-backed verification; the allow-list + scoping logic is the part worth keeping.",
       ],
       disclaimer: NOT_LEGAL_ADVICE,
     })

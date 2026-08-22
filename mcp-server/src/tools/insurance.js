@@ -7,9 +7,10 @@ import { COMPANY, NOT_LEGAL_ADVICE } from "../lib/constants.js";
 
 const PLAN_MULTIPLIER = { Basic: 0.0012, Standard: 0.0017, Premium: 0.0026 };
 
-export function registerInsuranceTools(server) {
+export function registerInsuranceTools(server, user) {
   defineTool(
     server,
+    user,
     "verify_insurance_eligibility",
     {
       title: "Verify insurance eligibility",
@@ -29,6 +30,7 @@ export function registerInsuranceTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_insurance_quotes",
     {
       title: "Generate insurance quotes",
@@ -48,6 +50,7 @@ export function registerInsuranceTools(server) {
 
   defineTool(
     server,
+    user,
     "enroll_in_insurance",
     {
       title: "Enroll in insurance",
@@ -70,6 +73,7 @@ export function registerInsuranceTools(server) {
 
   defineTool(
     server,
+    user,
     "manage_benefits_package",
     {
       title: "Manage benefits package",
@@ -92,6 +96,7 @@ export function registerInsuranceTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_insurance_coverage_letter",
     {
       title: "Generate proof-of-coverage letter",
@@ -113,6 +118,7 @@ export function registerInsuranceTools(server) {
 
   defineTool(
     server,
+    user,
     "track_insurance_claims",
     {
       title: "Track insurance claims",

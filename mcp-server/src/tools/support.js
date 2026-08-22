@@ -12,9 +12,10 @@ const ROUTE_MAP = {
   technical_support: "Support",
 };
 
-export function registerSupportTools(server) {
+export function registerSupportTools(server, user) {
   defineTool(
     server,
+    user,
     "send_notification",
     {
       title: "Send a notification",
@@ -38,6 +39,7 @@ export function registerSupportTools(server) {
 
   defineTool(
     server,
+    user,
     "create_support_ticket",
     {
       title: "Create a support ticket",
@@ -67,6 +69,7 @@ export function registerSupportTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_dispute_resolution",
     {
       title: "Generate a dispute-resolution plan",

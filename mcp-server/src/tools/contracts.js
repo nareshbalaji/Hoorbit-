@@ -5,9 +5,10 @@ import { uid, todayISO, nowISO } from "../lib/ids.js";
 import { fmtMoney, round2 } from "../lib/currency.js";
 import { NOT_LEGAL_ADVICE, COMPANY } from "../lib/constants.js";
 
-export function registerContractTools(server) {
+export function registerContractTools(server, user) {
   defineTool(
     server,
+    user,
     "generate_contract",
     {
       title: "Generate a staffing agreement",
@@ -49,6 +50,7 @@ export function registerContractTools(server) {
 
   defineTool(
     server,
+    user,
     "add_contract_conditions",
     {
       title: "Add contract conditions",
@@ -70,6 +72,7 @@ export function registerContractTools(server) {
 
   defineTool(
     server,
+    user,
     "sign_contract",
     {
       title: "Sign a contract (e-signature)",
@@ -96,6 +99,7 @@ export function registerContractTools(server) {
 
   defineTool(
     server,
+    user,
     "verify_contract_signatures",
     {
       title: "Verify contract signatures",
@@ -112,6 +116,7 @@ export function registerContractTools(server) {
 
   defineTool(
     server,
+    user,
     "store_contract_archive",
     {
       title: "Archive a signed contract",
@@ -129,6 +134,7 @@ export function registerContractTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_amendments",
     {
       title: "Generate a contract amendment",
@@ -151,6 +157,7 @@ export function registerContractTools(server) {
 
   defineTool(
     server,
+    user,
     "calculate_severance",
     {
       title: "Calculate severance",

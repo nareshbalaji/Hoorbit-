@@ -4,10 +4,12 @@ import { defineTool, notFound } from "../lib/toolkit.js";
 import { uid, todayISO } from "../lib/ids.js";
 import { weightedMatchScore, skillMatchScore } from "../lib/match.js";
 import { convert, fmtMoney } from "../lib/currency.js";
+import { redactDeveloperProfileIfNeeded } from "../lib/auth.js";
 
-export function registerRecruitmentTools(server) {
+export function registerRecruitmentTools(server, user) {
   defineTool(
     server,
+    user,
     "post_job",
     {
       title: "Post a job / project seat",
@@ -88,6 +90,7 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "search_developers",
     {
       title: "Search developers",
@@ -128,6 +131,7 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "apply_for_job",
     {
       title: "Apply for a job",
@@ -168,6 +172,7 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "enable_auto_apply",
     {
       title: "Enable/disable auto-apply",
@@ -202,6 +207,7 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "get_match_score",
     {
       title: "Get developer-job match score",
@@ -226,25 +232,27 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "get_developer_profile",
     {
       title: "Get full developer profile",
       description: "Full developer profile: contact info, skills, current contracts, payroll history summary, onboarding status, and pipeline applications.",
       inputSchema: { developer_id: z.string() },
     },
-    async (a) => {
+    async (a, user) => {
       const developer = findById("developers", a.developer_id) || notFound("developer", a.developer_id);
       const contracts = read("contracts").filter((c) => c.developer_id === a.developer_id);
       const payroll = read("payroll").filter((p) => p.developer_id === a.developer_id);
       const applications = read("candidates").filter((c) => c.developer_id === a.developer_id);
       const onboarding = read("onboarding").filter((o) => o.developer_id === a.developer_id);
       const insurance = read("insurance").filter((i) => i.developer_id === a.developer_id);
+      const isPrivileged = user && (user.role === "pm" || (user.role === "developer" && user.linkedId === developer.id));
       return {
         success: true,
-        developer: { ...developer, bank_account: developer.bank_account, tax_id: developer.tax_id },
+        developer: redactDeveloperProfileIfNeeded(user, developer),
         contracts,
         payroll_records: payroll.length,
-        lifetime_net_pay_by_currency: payroll.reduce((acc, p) => { acc[p.currency] = (acc[p.currency] || 0) + p.net_pay; return acc; }, {}),
+        lifetime_net_pay_by_currency: isPrivileged ? payroll.reduce((acc, p) => { acc[p.currency] = (acc[p.currency] || 0) + p.net_pay; return acc; }, {}) : "[redacted — not visible to your role]",
         applications,
         onboarding,
         insurance,
@@ -254,6 +262,7 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "bulk_import_developers",
     {
       title: "Bulk import developers",
@@ -298,6 +307,7 @@ export function registerRecruitmentTools(server) {
 
   defineTool(
     server,
+    user,
     "create_candidate_pipeline",
     {
       title: "Create a sourced-candidate pipeline entry",

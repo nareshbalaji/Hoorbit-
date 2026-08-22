@@ -5,9 +5,10 @@ import { uid, nowISO } from "../lib/ids.js";
 import { fmtMoney } from "../lib/currency.js";
 import { ONBOARD_ITEMS, COMPANY, NOT_LEGAL_ADVICE, NO_REAL_MONEY_MOVES } from "../lib/constants.js";
 
-export function registerOnboardingTools(server) {
+export function registerOnboardingTools(server, user) {
   defineTool(
     server,
+    user,
     "create_onboarding_checklist",
     {
       title: "Create onboarding checklist",
@@ -30,6 +31,7 @@ export function registerOnboardingTools(server) {
 
   defineTool(
     server,
+    user,
     "send_welcome_packet",
     {
       title: "Send welcome packet",
@@ -51,6 +53,7 @@ export function registerOnboardingTools(server) {
 
   defineTool(
     server,
+    user,
     "verify_background_check",
     {
       title: "Verify background check",
@@ -70,6 +73,7 @@ export function registerOnboardingTools(server) {
 
   defineTool(
     server,
+    user,
     "setup_tax_withholding",
     {
       title: "Set up tax withholding",
@@ -88,6 +92,7 @@ export function registerOnboardingTools(server) {
 
   defineTool(
     server,
+    user,
     "create_employee_record",
     {
       title: "Create HR employee record",
@@ -106,6 +111,7 @@ export function registerOnboardingTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_offer_letter",
     {
       title: "Generate offer letter",

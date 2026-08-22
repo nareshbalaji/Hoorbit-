@@ -2,7 +2,10 @@
   "mcpServers": {
     "hoorbit": {
       "command": "node",
-      "args": ["mcp-server/bin/stdio.js"]
+      "args": ["mcp-server/bin/stdio.js"],
+      "env": {
+        "HOORBIT_TOKEN": "hoorbit_pm_naresh"
+      }
     }
   }
 }

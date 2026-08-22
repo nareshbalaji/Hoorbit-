@@ -6,13 +6,24 @@ import express from "express";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { createServer } from "../src/server.js";
 import { read } from "../src/db.js";
+import { resolveToken } from "../src/lib/auth.js";
 
 const app = express();
 app.use(express.json({ limit: "10mb" }));
 
+function bearerUser(req) {
+  const header = req.get("authorization") || "";
+  const token = header.startsWith("Bearer ") ? header.slice(7).trim() : null;
+  return resolveToken(token);
+}
+
 app.post("/mcp", async (req, res) => {
   try {
-    const server = createServer();
+    // Stateless mode: a fresh server per request, so identity is resolved
+    // from this request's own Authorization header — real per-call auth,
+    // not a session established once and trusted forever.
+    const user = bearerUser(req);
+    const server = createServer(user);
     const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
     res.on("close", () => {
       transport.close();
@@ -40,6 +51,7 @@ app.get("/", (req, res) => {
     protocol: "Model Context Protocol (Streamable HTTP)",
     endpoint: "POST /mcp",
     note: "This is a real MCP endpoint, not a REST API — connect it with an MCP client (e.g. Claude's custom connector flow) rather than calling /tools/<name> directly.",
+    auth: "Every request needs an 'Authorization: Bearer <token>' header. tools/list works unauthenticated for discovery; every tools/call is denied without a valid token. See mcp-server/README.md for the demo token directory.",
     developers_on_file: read("developers").length,
     projects_on_file: read("projects").length,
   });

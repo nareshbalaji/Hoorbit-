@@ -6,9 +6,10 @@ import { fmtMoney, convert } from "../lib/currency.js";
 import { calculateTaxes as calcTaxes, calculateNetPay, round2 } from "../lib/payroll.js";
 import { NOT_LEGAL_ADVICE } from "../lib/constants.js";
 
-export function registerPayrollTools(server) {
+export function registerPayrollTools(server, user) {
   defineTool(
     server,
+    user,
     "calculate_gross_salary",
     {
       title: "Calculate gross salary",
@@ -27,6 +28,7 @@ export function registerPayrollTools(server) {
 
   defineTool(
     server,
+    user,
     "calculate_taxes",
     {
       title: "Calculate taxes",
@@ -50,6 +52,7 @@ export function registerPayrollTools(server) {
 
   defineTool(
     server,
+    user,
     "calculate_insurance_deductions",
     {
       title: "Calculate insurance deductions",
@@ -65,6 +68,7 @@ export function registerPayrollTools(server) {
 
   defineTool(
     server,
+    user,
     "calculate_net_pay",
     {
       title: "Calculate net pay",
@@ -83,6 +87,7 @@ export function registerPayrollTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_pay_stub",
     {
       title: "Generate pay stub",
@@ -112,6 +117,7 @@ export function registerPayrollTools(server) {
 
   defineTool(
     server,
+    user,
     "process_payroll",
     {
       title: "Process payroll for all active developers",
@@ -144,6 +150,7 @@ export function registerPayrollTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_w2_at_year_end",
     {
       title: "Generate year-end pay summary",

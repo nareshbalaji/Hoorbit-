@@ -9,9 +9,10 @@ function computeTeamCosts(project) {
   return round2(project.team_assigned.filter((t) => t.status === "active").reduce((sum, t) => sum + convert(t.rate_monthly, t.currency, project.budget_currency), 0));
 }
 
-export function registerInvoicingTools(server) {
+export function registerInvoicingTools(server, user) {
   defineTool(
     server,
+    user,
     "generate_invoice_to_company",
     {
       title: "Generate client invoice",
@@ -39,6 +40,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "itemize_invoice_costs",
     {
       title: "Itemize invoice costs",
@@ -58,6 +60,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "send_invoice_to_company",
     {
       title: "Send invoice to client",
@@ -74,6 +77,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "track_payment_status",
     {
       title: "Track invoice payment status",
@@ -89,6 +93,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "record_payment_received",
     {
       title: "Record payment received",
@@ -107,6 +112,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "calculate_commission_breakdown",
     {
       title: "Calculate commission breakdown",
@@ -130,6 +136,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "process_bank_transfer",
     {
       title: "Process a bank transfer",
@@ -145,6 +152,7 @@ export function registerInvoicingTools(server) {
 
   defineTool(
     server,
+    user,
     "generate_financial_reports",
     {
       title: "Generate financial reports",
