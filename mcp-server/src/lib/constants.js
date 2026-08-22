@@ -2,9 +2,12 @@ export const COMPANY = {
   legal_name: "Hoorbit LLC",
   entity_type: "Delaware Limited Liability Company",
   sender_email: "info@hoorbit.com",
+  website: "www.hoorbit.com",
   address: "251 Little Falls Drive, Wilmington, DE 19808, USA",
   tagline: "Staffing & project delivery for AS400 and supply-chain specialists",
 };
+
+export const COPYRIGHT_LINE = `© ${new Date().getFullYear()} Hoorbit LLC. All rights reserved. ${COMPANY.website}`;
 
 export const ONBOARD_ITEMS = [
   "contract_signed",

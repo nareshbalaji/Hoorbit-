@@ -165,3 +165,7 @@ Concretely, this server:
   runs on every call — it's not decorative. What's *not* real is the identity provider behind it: static
   demo tokens with no expiry/rotation/hashing, checked in to the seed data. Swap `resolveToken()` for a
   real IdP before this leaves demo status.
+
+## Copyright
+
+© 2026 Hoorbit LLC. All rights reserved. [www.hoorbit.com](https://www.hoorbit.com)

@@ -3,7 +3,7 @@ import { read, update, findById } from "../db.js";
 import { defineTool, notFound } from "../lib/toolkit.js";
 import { uid, todayISO, nowISO } from "../lib/ids.js";
 import { fmtMoney, round2 } from "../lib/currency.js";
-import { COMPANY, NOT_LEGAL_ADVICE } from "../lib/constants.js";
+import { COMPANY, NOT_LEGAL_ADVICE, COPYRIGHT_LINE } from "../lib/constants.js";
 
 const PLAN_MULTIPLIER = { Basic: 0.0012, Standard: 0.0017, Premium: 0.0026 };
 
@@ -111,7 +111,7 @@ export function registerInsuranceTools(server, user) {
         `${COMPANY.legal_name}\n\nTo Whom It May Concern,\n\n` +
         `This letter confirms that ${developer.name} is enrolled in a ${policy.plan} insurance plan through ${policy.provider}, ` +
         `effective ${policy.enrolled_date}, with coverage of ${fmtMoney(policy.coverage_amount, policy.currency)} (${policy.benefits.join(", ")}).\n\n` +
-        `Hoorbit LLC — HR & Compliance`;
+        `Hoorbit LLC — HR & Compliance\n${COMPANY.website}\n\n${COPYRIGHT_LINE}`;
       return { success: true, developer_id: a.developer_id, letter_text: letter, disclaimer: NOT_LEGAL_ADVICE };
     }
   );

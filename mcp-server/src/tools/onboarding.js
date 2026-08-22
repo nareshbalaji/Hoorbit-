@@ -3,7 +3,7 @@ import { read, update, findById } from "../db.js";
 import { defineTool, notFound } from "../lib/toolkit.js";
 import { uid, nowISO } from "../lib/ids.js";
 import { fmtMoney } from "../lib/currency.js";
-import { ONBOARD_ITEMS, COMPANY, NOT_LEGAL_ADVICE, NO_REAL_MONEY_MOVES } from "../lib/constants.js";
+import { ONBOARD_ITEMS, COMPANY, NOT_LEGAL_ADVICE, NO_REAL_MONEY_MOVES, COPYRIGHT_LINE } from "../lib/constants.js";
 
 export function registerOnboardingTools(server, user) {
   defineTool(
@@ -126,14 +126,14 @@ export function registerOnboardingTools(server, user) {
       update("contracts", (rows) => rows.map((c) => (c.id === a.contract_id ? { ...c, offer_letter_generated: true } : c)));
 
       const letter =
-        `${COMPANY.legal_name}\n${COMPANY.address}\n\n` +
+        `${COMPANY.legal_name}\n${COMPANY.address}\n${COMPANY.website}\n\n` +
         `Dear ${developer.name},\n\n` +
         `On behalf of ${COMPANY.legal_name}, we are pleased to offer you an engagement as ${contract.position} on the "${project.title}" project ` +
         `for ${project.client_name}, delivered under a Hoorbit-managed staffing agreement.\n\n` +
         `Rate: ${fmtMoney(contract.salary_monthly, contract.currency)} / month\n` +
         `Start date: ${contract.start_date}\nEnd date (est.): ${contract.end_date}\n\n` +
         `This offer is contingent on execution of the Hoorbit Staffing Agreement, a satisfactory background check, and submission of tax/banking documentation.\n\n` +
-        `We look forward to having you on the team.\n\nHoorbit LLC — Talent Operations`;
+        `We look forward to having you on the team.\n\nHoorbit LLC — Talent Operations\n\n${COPYRIGHT_LINE}`;
 
       return { success: true, contract_id: a.contract_id, developer: developer.name, position: contract.position, letter_text: letter, disclaimer: NOT_LEGAL_ADVICE };
     }

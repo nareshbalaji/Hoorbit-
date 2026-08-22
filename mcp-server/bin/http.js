@@ -7,6 +7,7 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { createServer } from "../src/server.js";
 import { read } from "../src/db.js";
 import { resolveToken } from "../src/lib/auth.js";
+import { COMPANY, COPYRIGHT_LINE } from "../src/lib/constants.js";
 
 const app = express();
 app.use(express.json({ limit: "10mb" }));
@@ -48,12 +49,15 @@ app.get("/health", (req, res) => res.json({ status: "healthy", service: "hoorbit
 app.get("/", (req, res) => {
   res.json({
     service: "Hoorbit Enterprise Staffing Platform — MCP server",
+    provider: COMPANY.legal_name,
+    website: COMPANY.website,
     protocol: "Model Context Protocol (Streamable HTTP)",
     endpoint: "POST /mcp",
     note: "This is a real MCP endpoint, not a REST API — connect it with an MCP client (e.g. Claude's custom connector flow) rather than calling /tools/<name> directly.",
     auth: "Every request needs an 'Authorization: Bearer <token>' header. tools/list works unauthenticated for discovery; every tools/call is denied without a valid token. See mcp-server/README.md for the demo token directory.",
     developers_on_file: read("developers").length,
     projects_on_file: read("projects").length,
+    copyright: COPYRIGHT_LINE,
   });
 });
 

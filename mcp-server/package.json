@@ -19,6 +19,8 @@
     "express": "^4.19.2",
     "zod": "^4.4.3"
   },
+  "author": "Hoorbit LLC <info@hoorbit.com> (https://www.hoorbit.com)",
+  "homepage": "https://www.hoorbit.com",
   "license": "UNLICENSED",
   "private": true
 }
