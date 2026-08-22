@@ -1,0 +1,32 @@
+[
+  {
+    "id": "int_001",
+    "candidate_id": "cand_001",
+    "project_id": "project_004",
+    "date": "2025-08-14",
+    "time": "15:00",
+    "timezone": "UTC-4",
+    "interviewer": "Priya Natarajan (PM)",
+    "zoom_link": "https://meet.example.com/hoorbit/int-001",
+    "status": "completed",
+    "feedback": {
+      "technical": 4,
+      "communication": 5,
+      "cultural_fit": 4,
+      "recommendation": "hire",
+      "notes": "Deep RPG background, strong on legacy batch systems."
+    }
+  },
+  {
+    "id": "int_003",
+    "candidate_id": "cand_002",
+    "project_id": "project_003",
+    "date": "2025-08-19",
+    "time": "11:00",
+    "timezone": "UTC+5:30",
+    "interviewer": "PM",
+    "zoom_link": "https://meet.example.com/hoorbit/int-003",
+    "status": "scheduled",
+    "feedback": null
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "hoorbit": {
+      "command": "node",
+      "args": ["mcp-server/bin/stdio.js"]
+    }
+  }
+}

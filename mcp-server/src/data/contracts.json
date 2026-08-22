@@ -1,0 +1,119 @@
+[
+  {
+    "id": "contract_001",
+    "developer_id": "dev_001",
+    "project_id": "project_001",
+    "position": "Lead Engineer",
+    "salary_monthly": 3200,
+    "currency": "GBP",
+    "start_date": "2025-03-01",
+    "end_date": "2025-11-30",
+    "status": "signed",
+    "conditions": [
+      "40 hrs/week",
+      "Remote — UTC+8 core overlap 4 hrs/day with London"
+    ],
+    "signatures": [
+      {
+        "party": "developer",
+        "name": "Rajesh Sharma",
+        "signed_at": "2025-02-24"
+      },
+      {
+        "party": "hoorbit",
+        "name": "Hoorbit LLC — Talent Operations",
+        "signed_at": "2025-02-24"
+      }
+    ],
+    "amendments": [],
+    "severance": null,
+    "offer_letter_generated": true,
+    "signed_date": "2025-02-24",
+    "archived": true,
+    "archived_at": "2025-02-25"
+  },
+  {
+    "id": "contract_002",
+    "developer_id": "dev_002",
+    "project_id": "project_001",
+    "position": "Senior Developer",
+    "salary_monthly": 2650,
+    "currency": "GBP",
+    "start_date": "2025-03-01",
+    "end_date": "2025-11-30",
+    "status": "signed",
+    "conditions": [
+      "40 hrs/week"
+    ],
+    "signatures": [
+      {
+        "party": "developer",
+        "name": "Sriselva Muthiah",
+        "signed_at": "2025-02-25"
+      },
+      {
+        "party": "hoorbit",
+        "name": "Hoorbit LLC — Talent Operations",
+        "signed_at": "2025-02-25"
+      }
+    ],
+    "amendments": [],
+    "severance": null,
+    "offer_letter_generated": true,
+    "signed_date": "2025-02-25",
+    "archived": true,
+    "archived_at": "2025-02-26"
+  },
+  {
+    "id": "contract_003",
+    "developer_id": "dev_005",
+    "project_id": "project_003",
+    "position": "SAP APO Consultant",
+    "salary_monthly": 21000,
+    "currency": "MYR",
+    "start_date": "2025-08-01",
+    "end_date": "2026-05-31",
+    "status": "signed",
+    "conditions": [
+      "40 hrs/week",
+      "On-site 2 days/week Kuala Lumpur"
+    ],
+    "signatures": [
+      {
+        "party": "developer",
+        "name": "Farah Aziz",
+        "signed_at": "2025-07-22"
+      },
+      {
+        "party": "hoorbit",
+        "name": "Hoorbit LLC — Talent Operations",
+        "signed_at": "2025-07-22"
+      }
+    ],
+    "amendments": [],
+    "severance": null,
+    "offer_letter_generated": true,
+    "signed_date": "2025-07-22",
+    "archived": false,
+    "archived_at": null
+  },
+  {
+    "id": "contract_004",
+    "developer_id": "dev_009",
+    "project_id": "project_004",
+    "position": "WMS Integration Lead",
+    "salary_monthly": 7100,
+    "currency": "EUR",
+    "start_date": "2025-09-01",
+    "end_date": "2026-02-28",
+    "status": "offered",
+    "conditions": [],
+    "signatures": [],
+    "amendments": [],
+    "severance": null,
+    "offer_letter_generated": true,
+    "signed_date": null,
+    "archived": false,
+    "archived_at": null
+  }
+]

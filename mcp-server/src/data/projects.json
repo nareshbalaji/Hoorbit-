@@ -1,0 +1,224 @@
+[
+  {
+    "id": "project_001",
+    "client_id": "client_001",
+    "client_name": "HSBC Technology Services",
+    "title": "AS400 Core Banking Migration",
+    "description": "Migrate core ledger and settlement workloads from legacy AS400/RPG to a modernized ILE architecture, with zero downtime cutover.",
+    "scope": "Full system design, RPGLE/CL remediation, DB2 schema modernization, regression testing, phased cutover.",
+    "budget": 420000,
+    "budget_currency": "GBP",
+    "timeline": {
+      "start_date": "2025-03-01",
+      "end_date": "2025-11-30",
+      "status": "in_progress"
+    },
+    "skills_required": [
+      "RPG",
+      "RPGLE",
+      "DB2",
+      "CL",
+      "ILE"
+    ],
+    "team_size_needed": 5,
+    "location": "Remote",
+    "team_assigned": [
+      {
+        "developer_id": "dev_001",
+        "name": "Rajesh Sharma",
+        "role": "Lead Engineer",
+        "rate_monthly": 3200,
+        "currency": "GBP",
+        "status": "active"
+      },
+      {
+        "developer_id": "dev_002",
+        "name": "Sriselva Muthiah",
+        "role": "Senior Developer",
+        "rate_monthly": 2650,
+        "currency": "GBP",
+        "status": "active"
+      }
+    ],
+    "commission_rate": 0.08,
+    "timeline_status": "on_track",
+    "client_satisfaction": 4.6,
+    "risks": [
+      "need_1_more_senior_dev",
+      "regression_testing_capacity"
+    ],
+    "created_at": "2025-01-14",
+    "started_at": "2025-03-01"
+  },
+  {
+    "id": "project_002",
+    "client_id": "client_002",
+    "client_name": "Meridian Supply Chain Corp",
+    "title": "Kinaxis S&OP Rollout — North America",
+    "description": "End-to-end Sales & Operations Planning implementation on Kinaxis RapidResponse across 6 distribution centers.",
+    "scope": "Demand/supply model build, integration to SAP ECC, planner enablement, hypercare support.",
+    "budget": 980000,
+    "budget_currency": "USD",
+    "timeline": {
+      "start_date": "2025-04-15",
+      "end_date": "2026-01-15",
+      "status": "in_progress"
+    },
+    "skills_required": [
+      "Kinaxis",
+      "SAP APO",
+      "EDI",
+      "Oracle SCM"
+    ],
+    "team_size_needed": 3,
+    "location": "Hybrid — Chicago, IL",
+    "team_assigned": [
+      {
+        "developer_id": "dev_003",
+        "name": "Michael Osei",
+        "role": "Lead Analyst",
+        "rate_monthly": 9800,
+        "currency": "USD",
+        "status": "active"
+      },
+      {
+        "developer_id": "dev_004",
+        "name": "Priya Natarajan",
+        "role": "Integration Specialist",
+        "rate_monthly": 6800,
+        "currency": "USD",
+        "status": "active"
+      }
+    ],
+    "commission_rate": 0.07,
+    "timeline_status": "on_track",
+    "client_satisfaction": 4.8,
+    "risks": [],
+    "created_at": "2025-02-20",
+    "started_at": "2025-04-15"
+  },
+  {
+    "id": "project_003",
+    "client_id": "client_003",
+    "client_name": "Petronas Digital Sdn Bhd",
+    "title": "SAP ERP Upgrade — Downstream Ops",
+    "description": "Upgrade SAP MM/APO landscape supporting downstream refining operations to S/4HANA-ready architecture.",
+    "scope": "Gap analysis, custom ABAP remediation, MM master data cleanse, integration testing.",
+    "budget": 1650000,
+    "budget_currency": "MYR",
+    "timeline": {
+      "start_date": "2025-08-01",
+      "end_date": "2026-05-31",
+      "status": "onboarding"
+    },
+    "skills_required": [
+      "SAP",
+      "SAP MM",
+      "SAP APO",
+      "ABAP"
+    ],
+    "team_size_needed": 4,
+    "location": "Hybrid — Kuala Lumpur",
+    "team_assigned": [
+      {
+        "developer_id": "dev_005",
+        "name": "Farah Aziz",
+        "role": "SAP APO Consultant",
+        "rate_monthly": 21000,
+        "currency": "MYR",
+        "status": "onboarding"
+      }
+    ],
+    "commission_rate": 0.08,
+    "timeline_status": "on_track",
+    "client_satisfaction": null,
+    "risks": [
+      "resource_shortage",
+      "3_seats_still_open"
+    ],
+    "created_at": "2025-06-10",
+    "started_at": "2025-08-01"
+  },
+  {
+    "id": "project_004",
+    "client_id": "client_004",
+    "client_name": "SingaFreight Pte Ltd",
+    "title": "WMS Integration & EDI Modernization",
+    "description": "Integrate warehouse management system with EDI trading partners and legacy AS400 inventory ledger.",
+    "scope": "EDI mapping, WMS-AS400 middleware, cutover planning, partner onboarding.",
+    "budget": 260000,
+    "budget_currency": "SGD",
+    "timeline": {
+      "start_date": "2025-09-01",
+      "end_date": "2026-02-28",
+      "status": "recruitment"
+    },
+    "skills_required": [
+      "WMS",
+      "EDI",
+      "RPGLE",
+      "Blue Yonder"
+    ],
+    "team_size_needed": 2,
+    "location": "Remote",
+    "team_assigned": [
+      {
+        "developer_id": "dev_009",
+        "name": "Jonas Eriksson",
+        "role": "WMS Integration Lead",
+        "rate_monthly": 7100,
+        "currency": "EUR",
+        "status": "offered"
+      }
+    ],
+    "commission_rate": 0.09,
+    "timeline_status": "at_risk",
+    "client_satisfaction": null,
+    "risks": [
+      "1_seat_still_open",
+      "start_date_pressure"
+    ],
+    "created_at": "2025-07-28",
+    "started_at": null
+  },
+  {
+    "id": "project_005",
+    "client_id": "client_005",
+    "client_name": "Nordisk Fraktlinjer AB",
+    "title": "AS400 Freight Ledger Modernization",
+    "description": "Modernized the freight settlement ledger from monolithic RPG to a modular ILE service layer.",
+    "scope": "System design, ILE refactor, DB2 tuning, UAT, documentation handover.",
+    "budget": 190000,
+    "budget_currency": "EUR",
+    "timeline": {
+      "start_date": "2024-09-01",
+      "end_date": "2025-03-01",
+      "status": "closed"
+    },
+    "skills_required": [
+      "RPG",
+      "RPGLE",
+      "DB2",
+      "WMS"
+    ],
+    "team_size_needed": 1,
+    "location": "Remote",
+    "team_assigned": [
+      {
+        "developer_id": "dev_006",
+        "name": "Wei Ling Tan",
+        "role": "Lead Engineer",
+        "rate_monthly": 8200,
+        "currency": "SGD",
+        "status": "completed"
+      }
+    ],
+    "commission_rate": 0.07,
+    "timeline_status": "delivered",
+    "client_satisfaction": 4.9,
+    "risks": [],
+    "created_at": "2024-07-05",
+    "started_at": "2024-09-01",
+    "completed_at": "2025-03-01"
+  }
+]

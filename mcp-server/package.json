@@ -1,0 +1,24 @@
+{
+  "name": "hoorbit-enterprise-mcp",
+  "version": "1.0.0",
+  "description": "Hoorbit LLC staffing & project-delivery platform — real Model Context Protocol server (56 tools across recruitment, contracts, onboarding, insurance, payroll, invoicing, compliance, dashboards, and support).",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node bin/http.js",
+    "dev": "node bin/http.js",
+    "stdio": "node bin/stdio.js",
+    "test": "node test/smoke.js && node test/smoke_http.js",
+    "reset-db": "node -e \"import('./src/db.js').then(m=>console.log(m.resetDatabase()))\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "express": "^4.19.2",
+    "zod": "^4.4.3"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

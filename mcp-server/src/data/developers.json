@@ -1,0 +1,292 @@
+[
+  {
+    "id": "dev_001",
+    "name": "Rajesh Sharma",
+    "email": "rajesh.sharma@example.com",
+    "phone": "+60 12 345 6789",
+    "location": "Kuala Lumpur, Malaysia",
+    "timezone": "UTC+8",
+    "skills": [
+      "RPG",
+      "RPGLE",
+      "DB2",
+      "CL",
+      "Aldon",
+      "Turnover"
+    ],
+    "experience_years": 16,
+    "certifications": [
+      "IBM i Certified Systems Administrator",
+      "Aldon Advanced Practitioner"
+    ],
+    "current_rate_monthly": 3200,
+    "current_rate_currency": "GBP",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••1234",
+    "tax_id": "MY-TAX-99213",
+    "background_check": "cleared",
+    "ratings": 4.9,
+    "total_earned_usd": 41800,
+    "status": "active",
+    "auto_apply_enabled": false,
+    "profile_completeness": 96
+  },
+  {
+    "id": "dev_002",
+    "name": "Sriselva Muthiah",
+    "email": "sriselva.m@example.com",
+    "phone": "+65 8123 4455",
+    "location": "Singapore",
+    "timezone": "UTC+8",
+    "skills": [
+      "RPG",
+      "RPGLE",
+      "DB2",
+      "ILE",
+      "CL"
+    ],
+    "experience_years": 12,
+    "certifications": [
+      "IBM i Certified Application Developer"
+    ],
+    "current_rate_monthly": 2650,
+    "current_rate_currency": "GBP",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••8842",
+    "tax_id": "SG-TAX-33012",
+    "background_check": "cleared",
+    "ratings": 4.8,
+    "total_earned_usd": 33200,
+    "status": "active",
+    "auto_apply_enabled": false,
+    "profile_completeness": 92
+  },
+  {
+    "id": "dev_003",
+    "name": "Michael Osei",
+    "email": "michael.osei@example.com",
+    "phone": "+1 773 555 0192",
+    "location": "Chicago, USA",
+    "timezone": "UTC-5",
+    "skills": [
+      "Kinaxis",
+      "SAP APO",
+      "EDI",
+      "Oracle SCM"
+    ],
+    "experience_years": 10,
+    "certifications": [
+      "Kinaxis RapidResponse Certified Analyst"
+    ],
+    "current_rate_monthly": 9800,
+    "current_rate_currency": "USD",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••2210",
+    "tax_id": "US-SSN-••4471",
+    "background_check": "cleared",
+    "ratings": 4.7,
+    "total_earned_usd": 58800,
+    "status": "active",
+    "auto_apply_enabled": false,
+    "profile_completeness": 89
+  },
+  {
+    "id": "dev_004",
+    "name": "Priya Natarajan",
+    "email": "priya.n@example.com",
+    "phone": "+91 98765 43210",
+    "location": "Chennai, India",
+    "timezone": "UTC+5:30",
+    "skills": [
+      "SAP",
+      "SAP MM",
+      "ILE",
+      "RPGLE"
+    ],
+    "experience_years": 9,
+    "certifications": [
+      "SAP Certified Application Associate – MM"
+    ],
+    "current_rate_monthly": 6800,
+    "current_rate_currency": "USD",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••7723",
+    "tax_id": "IN-PAN-••931Z",
+    "background_check": "cleared",
+    "ratings": 4.9,
+    "total_earned_usd": 20400,
+    "status": "active",
+    "auto_apply_enabled": false,
+    "profile_completeness": 94
+  },
+  {
+    "id": "dev_005",
+    "name": "Farah Aziz",
+    "email": "farah.aziz@example.com",
+    "phone": "+60 17 220 8891",
+    "location": "Kuala Lumpur, Malaysia",
+    "timezone": "UTC+8",
+    "skills": [
+      "SAP",
+      "SAP APO",
+      "ABAP",
+      "SAP MM"
+    ],
+    "experience_years": 8,
+    "certifications": [
+      "SAP Certified Technology Associate"
+    ],
+    "current_rate_monthly": 21000,
+    "current_rate_currency": "MYR",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••4471",
+    "tax_id": "MY-TAX-71029",
+    "background_check": "cleared",
+    "ratings": 4.6,
+    "total_earned_usd": 9600,
+    "status": "onboarding",
+    "auto_apply_enabled": false,
+    "profile_completeness": 78
+  },
+  {
+    "id": "dev_006",
+    "name": "Wei Ling Tan",
+    "email": "weiling.tan@example.com",
+    "phone": "+65 9123 7765",
+    "location": "Singapore",
+    "timezone": "UTC+8",
+    "skills": [
+      "WMS",
+      "EDI",
+      "SAP MM",
+      "Blue Yonder"
+    ],
+    "experience_years": 7,
+    "certifications": [
+      "Blue Yonder WMS Certified"
+    ],
+    "current_rate_monthly": 8200,
+    "current_rate_currency": "SGD",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••9038",
+    "tax_id": "SG-TAX-58834",
+    "background_check": "cleared",
+    "ratings": 4.8,
+    "total_earned_usd": 15200,
+    "status": "active",
+    "auto_apply_enabled": false,
+    "profile_completeness": 91
+  },
+  {
+    "id": "dev_007",
+    "name": "Carlos Mendes",
+    "email": "carlos.mendes@example.com",
+    "phone": "+1 416 555 0134",
+    "location": "Toronto, Canada",
+    "timezone": "UTC-4",
+    "skills": [
+      "RPG",
+      "RPGLE",
+      "CL",
+      "COBOL"
+    ],
+    "experience_years": 19,
+    "certifications": [
+      "IBM i Certified Systems Administrator"
+    ],
+    "current_rate_monthly": 8600,
+    "current_rate_currency": "CAD",
+    "availability": "2 weeks",
+    "bank_account": "XXXXXX••1002",
+    "tax_id": "CA-SIN-••229",
+    "background_check": "pending",
+    "ratings": 0,
+    "total_earned_usd": 0,
+    "status": "candidate",
+    "auto_apply_enabled": false,
+    "profile_completeness": 71
+  },
+  {
+    "id": "dev_008",
+    "name": "Anjali Deshmukh",
+    "email": "anjali.d@example.com",
+    "phone": "+91 98220 11345",
+    "location": "Pune, India",
+    "timezone": "UTC+5:30",
+    "skills": [
+      "Kinaxis",
+      "o9 Solutions",
+      "SAP APO"
+    ],
+    "experience_years": 6,
+    "certifications": [
+      "Kinaxis RapidResponse Certified Analyst"
+    ],
+    "current_rate_monthly": 5200,
+    "current_rate_currency": "USD",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••5567",
+    "tax_id": "IN-PAN-••402K",
+    "background_check": "cleared",
+    "ratings": 0,
+    "total_earned_usd": 0,
+    "status": "candidate",
+    "auto_apply_enabled": true,
+    "profile_completeness": 84
+  },
+  {
+    "id": "dev_009",
+    "name": "Jonas Eriksson",
+    "email": "jonas.eriksson@example.com",
+    "phone": "+46 70 123 4567",
+    "location": "Stockholm, Sweden",
+    "timezone": "UTC+1",
+    "skills": [
+      "RPGLE",
+      "DB2",
+      "ILE",
+      "Synon"
+    ],
+    "experience_years": 14,
+    "certifications": [
+      "IBM i Certified Application Developer"
+    ],
+    "current_rate_monthly": 7100,
+    "current_rate_currency": "EUR",
+    "availability": "immediate",
+    "bank_account": "XXXXXX••3390",
+    "tax_id": "SE-TAX-88213",
+    "background_check": "cleared",
+    "ratings": 4.9,
+    "total_earned_usd": 6100,
+    "status": "onboarding",
+    "auto_apply_enabled": false,
+    "profile_completeness": 88
+  },
+  {
+    "id": "dev_010",
+    "name": "Grace Mwangi",
+    "email": "grace.mwangi@example.com",
+    "phone": "+254 712 445 890",
+    "location": "Nairobi, Kenya (Remote)",
+    "timezone": "UTC+3",
+    "skills": [
+      "SAP MM",
+      "SAP",
+      "EDI"
+    ],
+    "experience_years": 5,
+    "certifications": [],
+    "current_rate_monthly": 4400,
+    "current_rate_currency": "USD",
+    "availability": "1 month",
+    "bank_account": "XXXXXX••7781",
+    "tax_id": "KE-PIN-••556B",
+    "background_check": "in_review",
+    "ratings": 0,
+    "total_earned_usd": 0,
+    "status": "candidate",
+    "auto_apply_enabled": true,
+    "profile_completeness": 66
+  }
+]

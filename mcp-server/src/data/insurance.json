@@ -1,0 +1,44 @@
+[
+  {
+    "id": "ins_001",
+    "developer_id": "dev_001",
+    "plan": "Standard",
+    "provider": "Hoorbit Global Health Partners",
+    "coverage_amount": 50000,
+    "currency": "USD",
+    "monthly_premium": 85,
+    "status": "active",
+    "enrolled_date": "2025-03-05",
+    "benefits": [
+      "health",
+      "dental"
+    ],
+    "claims": []
+  },
+  {
+    "id": "ins_002",
+    "developer_id": "dev_003",
+    "plan": "Premium",
+    "provider": "Hoorbit Global Health Partners",
+    "coverage_amount": 100000,
+    "currency": "USD",
+    "monthly_premium": 140,
+    "status": "active",
+    "enrolled_date": "2025-04-20",
+    "benefits": [
+      "health",
+      "dental",
+      "vision"
+    ],
+    "claims": [
+      {
+        "id": "claim_001",
+        "filed_at": "2025-07-10",
+        "description": "Routine dental cleaning",
+        "amount": 120,
+        "currency": "USD",
+        "status": "approved"
+      }
+    ]
+  }
+]

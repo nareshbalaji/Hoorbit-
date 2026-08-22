@@ -1,0 +1,30 @@
+[
+  {
+    "id": "tick_001",
+    "from_type": "developer",
+    "from_id": "dev_005",
+    "from_name": "Farah Aziz",
+    "category": "payslip_issue",
+    "subject": "First payslip not yet received",
+    "description": "Onboarding checklist shows first payslip pending.",
+    "status": "in_progress",
+    "assigned_to": "HR — Onboarding",
+    "created_at": "2025-08-12",
+    "updated_at": "2025-08-13",
+    "resolution_time_hrs": null
+  },
+  {
+    "id": "tick_002",
+    "from_type": "client",
+    "from_id": "client_003",
+    "from_name": "Petronas Digital Sdn Bhd",
+    "category": "project_question",
+    "subject": "Timeline for remaining 3 SAP seats",
+    "description": "Can you confirm when the remaining APO and MM seats will be filled?",
+    "status": "open",
+    "assigned_to": "Project Manager",
+    "created_at": "2025-08-14",
+    "updated_at": "2025-08-14",
+    "resolution_time_hrs": null
+  }
+]

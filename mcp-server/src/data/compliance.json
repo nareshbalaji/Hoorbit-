@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cmp_001",
+    "entity_type": "contract",
+    "entity_id": "contract_001",
+    "record_type": "worker_classification_review",
+    "status": "on_file",
+    "details": "Independent contractor classification confirmed for Malaysia-based engagement.",
+    "created_at": "2025-02-24"
+  },
+  {
+    "id": "cmp_002",
+    "entity_type": "client",
+    "entity_id": "client_003",
+    "record_type": "banking_compliance",
+    "status": "on_file",
+    "details": "Malaysia-linked billing flow reviewed against BNM RMiT guidance (illustrative record — not a real regulatory filing).",
+    "created_at": "2025-06-12"
+  }
+]

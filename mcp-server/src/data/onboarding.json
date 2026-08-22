@@ -1,0 +1,78 @@
+[
+  {
+    "id": "onb_001",
+    "developer_id": "dev_001",
+    "project_id": "project_001",
+    "checklist": {
+      "contract_signed": true,
+      "background_check_cleared": true,
+      "tax_docs_submitted": true,
+      "bank_details_verified": true,
+      "first_payslip_generated": true,
+      "client_introduction_sent": true,
+      "vpn_access_granted": true,
+      "onboarding_call_completed": true,
+      "knowledge_transfer_started": true,
+      "first_week_checkin_done": true
+    },
+    "welcome_packet_sent": true,
+    "created_at": "2025-02-25"
+  },
+  {
+    "id": "onb_002",
+    "developer_id": "dev_002",
+    "project_id": "project_001",
+    "checklist": {
+      "contract_signed": true,
+      "background_check_cleared": true,
+      "tax_docs_submitted": true,
+      "bank_details_verified": true,
+      "first_payslip_generated": true,
+      "client_introduction_sent": true,
+      "vpn_access_granted": true,
+      "onboarding_call_completed": true,
+      "knowledge_transfer_started": true,
+      "first_week_checkin_done": true
+    },
+    "welcome_packet_sent": true,
+    "created_at": "2025-02-26"
+  },
+  {
+    "id": "onb_003",
+    "developer_id": "dev_005",
+    "project_id": "project_003",
+    "checklist": {
+      "contract_signed": true,
+      "background_check_cleared": true,
+      "tax_docs_submitted": true,
+      "bank_details_verified": true,
+      "first_payslip_generated": false,
+      "client_introduction_sent": true,
+      "vpn_access_granted": false,
+      "onboarding_call_completed": true,
+      "knowledge_transfer_started": false,
+      "first_week_checkin_done": false
+    },
+    "welcome_packet_sent": true,
+    "created_at": "2025-07-23"
+  },
+  {
+    "id": "onb_004",
+    "developer_id": "dev_009",
+    "project_id": "project_004",
+    "checklist": {
+      "contract_signed": false,
+      "background_check_cleared": true,
+      "tax_docs_submitted": false,
+      "bank_details_verified": false,
+      "first_payslip_generated": false,
+      "client_introduction_sent": false,
+      "vpn_access_granted": false,
+      "onboarding_call_completed": false,
+      "knowledge_transfer_started": false,
+      "first_week_checkin_done": false
+    },
+    "welcome_packet_sent": false,
+    "created_at": "2025-08-13"
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "client_001",
+    "company_name": "HSBC Technology Services",
+    "contact_name": "Amanda Wright",
+    "contact_email": "amanda.wright@hsbc-tech.example.com",
+    "contact_phone": "+44 20 7946 0958",
+    "country": "United Kingdom",
+    "preferred_currency": "GBP",
+    "industry": "Banking & Financial Services",
+    "billing_address": "8 Canada Square, London E14 5HQ, UK",
+    "since": "2024-08-15",
+    "status": "active"
+  },
+  {
+    "id": "client_002",
+    "company_name": "Meridian Supply Chain Corp",
+    "contact_name": "David Okafor",
+    "contact_email": "d.okafor@meridiansc.example.com",
+    "contact_phone": "+1 312 555 0148",
+    "country": "United States",
+    "preferred_currency": "USD",
+    "industry": "Logistics & Supply Chain",
+    "billing_address": "233 S Wacker Dr, Chicago, IL 60606, USA",
+    "since": "2025-01-10",
+    "status": "active"
+  },
+  {
+    "id": "client_003",
+    "company_name": "Petronas Digital Sdn Bhd",
+    "contact_name": "Nurul Izzah",
+    "contact_email": "nurul.izzah@petronas-digital.example.com",
+    "contact_phone": "+60 3 2331 5000",
+    "country": "Malaysia",
+    "preferred_currency": "MYR",
+    "industry": "Oil & Gas / ERP",
+    "billing_address": "Tower 1, PETRONAS Twin Towers, KLCC, 50088 Kuala Lumpur",
+    "since": "2025-03-01",
+    "status": "active"
+  },
+  {
+    "id": "client_004",
+    "company_name": "SingaFreight Pte Ltd",
+    "contact_name": "Marcus Tan",
+    "contact_email": "marcus.tan@singafreight.example.com",
+    "contact_phone": "+65 6221 4000",
+    "country": "Singapore",
+    "preferred_currency": "SGD",
+    "industry": "Freight & Logistics",
+    "billing_address": "1 Marina Boulevard, Singapore 018989",
+    "since": "2025-05-20",
+    "status": "active"
+  },
+  {
+    "id": "client_005",
+    "company_name": "Nordisk Fraktlinjer AB",
+    "contact_name": "Elin Berg",
+    "contact_email": "elin.berg@nordiskfrakt.example.com",
+    "contact_phone": "+46 8 555 01234",
+    "country": "Sweden",
+    "preferred_currency": "EUR",
+    "industry": "Freight & Logistics",
+    "billing_address": "Kungsgatan 12, 111 43 Stockholm",
+    "since": "2024-02-01",
+    "status": "active"
+  }
+]

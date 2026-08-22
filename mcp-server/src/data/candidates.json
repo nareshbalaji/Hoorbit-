@@ -1,0 +1,72 @@
+[
+  {
+    "id": "cand_001",
+    "developer_id": "dev_007",
+    "name": "Carlos Mendes",
+    "project_id": "project_004",
+    "stage": "interviewed",
+    "skills_match_pct": 88,
+    "interview_score": 4.2,
+    "expected_rate_monthly": 8000,
+    "expected_rate_currency": "CAD",
+    "applied_at": "2025-08-01",
+    "availability": "2 weeks notice",
+    "source": "application"
+  },
+  {
+    "id": "cand_002",
+    "developer_id": "dev_008",
+    "name": "Anjali Deshmukh",
+    "project_id": "project_003",
+    "stage": "shortlisted",
+    "skills_match_pct": 81,
+    "interview_score": null,
+    "expected_rate_monthly": 5600,
+    "expected_rate_currency": "USD",
+    "applied_at": "2025-08-05",
+    "availability": "Immediate",
+    "source": "application"
+  },
+  {
+    "id": "cand_003",
+    "developer_id": "dev_010",
+    "name": "Grace Mwangi",
+    "project_id": "project_004",
+    "stage": "applied",
+    "skills_match_pct": 64,
+    "interview_score": null,
+    "expected_rate_monthly": 4400,
+    "expected_rate_currency": "USD",
+    "applied_at": "2025-08-09",
+    "availability": "1 month notice",
+    "source": "application"
+  },
+  {
+    "id": "cand_004",
+    "developer_id": "dev_009",
+    "name": "Jonas Eriksson",
+    "project_id": "project_004",
+    "stage": "offered",
+    "skills_match_pct": 93,
+    "interview_score": 4.7,
+    "expected_rate_monthly": 7100,
+    "expected_rate_currency": "EUR",
+    "applied_at": "2025-07-20",
+    "availability": "Immediate",
+    "source": "application"
+  },
+  {
+    "id": "cand_005",
+    "developer_id": "dev_005",
+    "name": "Farah Aziz",
+    "project_id": "project_003",
+    "stage": "onboarded",
+    "skills_match_pct": 90,
+    "interview_score": 4.5,
+    "expected_rate_monthly": 21000,
+    "expected_rate_currency": "MYR",
+    "applied_at": "2025-07-01",
+    "availability": "Immediate",
+    "source": "application"
+  }
+]
