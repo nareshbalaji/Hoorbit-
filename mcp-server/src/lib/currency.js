@@ -8,6 +8,12 @@ export const CURRENCIES = {
   SGD: { symbol: "S$", name: "Singapore Dollar", toUSD: 0.744 },
   AUD: { symbol: "A$", name: "Australian Dollar", toUSD: 0.658 },
   CAD: { symbol: "C$", name: "Canadian Dollar", toUSD: 0.732 },
+  CNY: { symbol: "CN¥", name: "Chinese Yuan", toUSD: 0.14 },
+  JPY: { symbol: "JP¥", name: "Japanese Yen", toUSD: 0.0067 },
+  VND: { symbol: "₫", name: "Vietnamese Dong", toUSD: 0.000039 },
+  TRY: { symbol: "₺", name: "Turkish Lira", toUSD: 0.024 },
+  AED: { symbol: "AED ", name: "UAE Dirham", toUSD: 0.2723 },
+  MXN: { symbol: "MX$", name: "Mexican Peso", toUSD: 0.054 },
 };
 export const DEFAULT_CURRENCY = "USD";
 

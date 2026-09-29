@@ -45,7 +45,7 @@ async function main() {
   console.log("\n=== tools/list ===");
   const list = await client.listTools();
   console.log(`Tool count: ${list.tools.length}`);
-  check("registers 57 tools (56 + whoami)", list.tools.length === 57, list.tools.map((t) => t.name));
+  check("registers 71 tools (56 + 14 trade + whoami)", list.tools.length === 71, list.tools.map((t) => t.name));
   const names = list.tools.map((t) => t.name);
   const EXPECTED = [
     "post_job", "search_developers", "apply_for_job", "enable_auto_apply", "get_match_score", "get_developer_profile", "bulk_import_developers", "create_candidate_pipeline",
@@ -190,7 +190,7 @@ async function main() {
   {
     const anon = await connectAs(null);
     const anonList = await anon.listTools();
-    check("unauthenticated: tools/list still works (discovery)", anonList.tools.length === 57);
+    check("unauthenticated: tools/list still works (discovery)", anonList.tools.length === 71);
     const denied = parse(await anon.callTool({ name: "get_admin_dashboard", arguments: { currency: "USD" } }));
     check("unauthenticated: tools/call is denied", denied.isError === true && denied.json.unauthorized === true, denied.json);
     const who = parse(await anon.callTool({ name: "whoami", arguments: {} }));

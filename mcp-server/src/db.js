@@ -15,6 +15,7 @@ export const COLLECTIONS = [
   "clients", "developers", "projects", "candidates", "interviews",
   "contracts", "onboarding", "payroll", "invoices", "insurance",
   "compliance", "audit_trail", "tickets",
+  "trade_companies", "trade_rfqs", "trade_matches", "trade_deals",
 ];
 
 function ensureSeeded() {

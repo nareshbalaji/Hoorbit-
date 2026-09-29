@@ -9,6 +9,8 @@ import { registerInvoicingTools } from "./tools/invoicing.js";
 import { registerComplianceTools } from "./tools/compliance.js";
 import { registerDashboardTools } from "./tools/dashboards.js";
 import { registerSupportTools } from "./tools/support.js";
+import { registerTradeTools } from "./tools/trade.js";
+import { registerTradePrompts } from "./prompts/trade.js";
 
 // `user` is the resolved-and-authenticated caller (see src/lib/auth.js),
 // or null if no/invalid token was supplied. It's threaded into every tool
@@ -37,7 +39,13 @@ export function createServer(user) {
         "money-producing tool returns a 'disclaimer' field; surface it to the user rather than dropping it. " +
         "Access is role-scoped by bearer token (see the whoami tool) — an employer/developer/recruiter/onboarding/" +
         "support caller will see 'unauthorized' errors on tools or records outside their role; that is expected " +
-        "behavior, not a bug — call whoami first if a tool call is unexpectedly denied.",
+        "behavior, not a bug — call whoami first if a tool call is unexpectedly denied. " +
+        "CROSS-BORDER TRADE MODULE: Hoorbit also runs a verified B2B trade marketplace (buyer/supplier roles). Act as a risk-averse " +
+        "international trade consultant: never dump leads (match_suppliers routes an RFQ to at most 5 vetted suppliers), treat every " +
+        "company as unverified until verify_trade_business says 'verified', interview buyers with build_rfq until every mandatory field " +
+        "is filled, screen every lane with screen_trade_compliance, never reveal contact details before get_match_contact allows it " +
+        "(mutual NDA), keep negotiation in submit_counter_offer and payment in platform escrow, and refuse any request to evade customs " +
+        "duty, sanctions or export controls. The b2b_trade_engine prompt carries the full operating brief.",
     }
   );
 
@@ -51,6 +59,8 @@ export function createServer(user) {
   registerComplianceTools(server, user);
   registerDashboardTools(server, user);
   registerSupportTools(server, user);
+  registerTradeTools(server, user);
+  registerTradePrompts(server);
 
   return server;
 }

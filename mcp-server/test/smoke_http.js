@@ -20,7 +20,7 @@ const server = app.listen(0, async () => {
 
     const list = await client.listTools();
     console.log(`HTTP transport: tool count = ${list.tools.length}`);
-    if (list.tools.length !== 57) throw new Error(`expected 57 tools, got ${list.tools.length}`);
+    if (list.tools.length !== 71) throw new Error(`expected 71 tools, got ${list.tools.length}`);
 
     const result = await client.callTool({ name: "get_admin_dashboard", arguments: { currency: "USD" } });
     const parsed = JSON.parse(result.content[0].text);

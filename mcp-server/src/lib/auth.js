@@ -28,6 +28,8 @@ export const ROLE_META = {
   recruiter: { label: "Recruiter", scope: "Candidate pipeline, interviews, offers, contracts — no financial/billing tools." },
   onboarding: { label: "Onboarding Coordinator", scope: "New-hire checklists, background checks, insurance enrollment — no financial/billing tools." },
   support: { label: "Support Agent", scope: "Tickets, notifications, and read-only lookups needed to resolve them — no financial/billing tools." },
+  buyer: { label: "Trade Buyer", scope: "Cross-border trade: your own company's verification, RFQs, matches, NDAs, negotiations, escrow and deal sheets." },
+  supplier: { label: "Trade Supplier", scope: "Cross-border trade: your own company's verification and only the RFQ matches routed to you — no RFQ browsing." },
 };
 
 const STAFF_USERS = [
@@ -42,7 +44,8 @@ function loadDirectory() {
   const developers = read("developers");
   const employerUsers = clients.map((c) => ({ id: `user_${c.id}`, token: `hoorbit_employer_${c.id}`, name: c.contact_name, role: "employer", linkedId: c.id, company: c.company_name }));
   const developerUsers = developers.map((d) => ({ id: `user_${d.id}`, token: `hoorbit_developer_${d.id}`, name: d.name, role: "developer", linkedId: d.id }));
-  return [...STAFF_USERS, ...employerUsers, ...developerUsers];
+  const tradeUsers = read("trade_companies").map((c) => ({ id: `user_${c.id}`, token: `hoorbit_${c.type}_${c.id}`, name: c.contact.name, role: c.type, linkedId: c.id, company: c.company_name }));
+  return [...STAFF_USERS, ...employerUsers, ...developerUsers, ...tradeUsers];
 }
 
 export function listDemoAccounts() {
@@ -86,6 +89,16 @@ const PERMISSIONS = {
     "get_developer_profile", "get_company_dashboard", "get_developer_dashboard",
     "track_insurance_claims", "create_support_ticket", "send_notification", "generate_dispute_resolution", "whoami",
   ],
+  buyer: [
+    "verify_trade_business", "suggest_hs_code", "screen_trade_compliance", "get_trade_documents",
+    "build_rfq", "match_suppliers", "list_trade_matches", "sign_platform_nda", "get_match_contact",
+    "normalize_trade_message", "submit_counter_offer", "recommend_inspection", "create_escrow_milestones", "generate_deal_sheet", "whoami",
+  ],
+  supplier: [
+    "verify_trade_business", "suggest_hs_code", "screen_trade_compliance", "get_trade_documents",
+    "list_trade_matches", "sign_platform_nda", "get_match_contact",
+    "normalize_trade_message", "submit_counter_offer", "recommend_inspection", "generate_deal_sheet", "whoami",
+  ],
 };
 
 export function allowedTools(role) {
@@ -100,6 +113,15 @@ function ownsProject(user, projectId) {
 function ownsInvoice(user, invoiceId) {
   const invoice = read("invoices").find((i) => i.id === invoiceId);
   return !!invoice && invoice.client_id === user.linkedId;
+}
+function ownsRfq(user, rfqId) {
+  const rfq = read("trade_rfqs").find((r) => r.id === rfqId);
+  return !!rfq && rfq.buyer_id === user.linkedId;
+}
+function partyToMatch(user, matchId) {
+  const match = read("trade_matches").find((m) => m.id === matchId);
+  if (!match) return false;
+  return user.role === "buyer" ? match.buyer_id === user.linkedId : match.supplier_id === user.linkedId;
 }
 function ownsContract(user, contractId) {
   const contract = read("contracts").find((c) => c.id === contractId);
@@ -132,6 +154,21 @@ function checkScope(user, toolName, args) {
       const idField = toolName === "create_support_ticket" ? "from_id" : "to_id";
       if (args[idField] && args[idField] !== user.linkedId) throw new AuthError("You can only file/notify on your own behalf.");
     }
+  }
+
+  // Trade roles: a company can only act as itself, on its own RFQs, and on
+  // matches it is a party to. A supplier never sees an RFQ that wasn't routed
+  // to it (no lead browsing), and nobody can sign or negotiate as the other side.
+  if (user.role === "buyer" || user.role === "supplier") {
+    for (const p of ["company_id", "buyer_id"]) {
+      if (p in args && args[p] !== user.linkedId) throw new AuthError(`You can only act for your own company (${user.linkedId}), not ${args[p]}.`);
+    }
+    if (args.rfq_id) {
+      if (user.role === "buyer" && !ownsRfq(user, args.rfq_id)) throw new AuthError("That RFQ does not belong to your company.");
+      if (user.role === "supplier" && !read("trade_matches").some((m) => m.rfq_id === args.rfq_id && m.supplier_id === user.linkedId)) throw new AuthError("That RFQ has not been routed to your company.");
+    }
+    if (args.match_id && !partyToMatch(user, args.match_id)) throw new AuthError("You are not a party to that match.");
+    if (args.party && args.party !== user.role) throw new AuthError(`You can only act as the '${user.role}' party.`);
   }
 
   if (user.role === "support") {
