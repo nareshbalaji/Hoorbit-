@@ -1,0 +1,47 @@
+# GiliranBox CI. NOTE: written alongside the project but not yet executed on GitHub.
+name: giliranbox
+on:
+  push:
+    paths: ['giliranbox/**', '.github/workflows/giliranbox.yml']
+  pull_request:
+    paths: ['giliranbox/**']
+defaults:
+  run:
+    working-directory: giliranbox
+jobs:
+  database-and-kiosk:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PostgreSQL 16 + PostGIS
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-16 postgresql-16-postgis-3
+          sudo pg_ctlcluster 16 main start
+      - name: SQL tests (migrations, seed, 91 assertions)
+        run: sudo supabase/tests/run.sh
+      - name: Backend benchmark
+        run: sudo supabase/tests/perf.sh
+      - name: Kiosk tests (unit + against real SQL)
+        run: sudo python3 -m unittest test_kiosk test_integration
+        working-directory: giliranbox/kiosk
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Push message tests
+        run: node --experimental-strip-types supabase/functions/push/messages.test.ts
+      - name: API reference is up to date
+        run: |
+          sudo python3 tools/gen_api_docs.py > /tmp/API_RPC.md
+          diff /tmp/API_RPC.md docs/API_RPC.md
+  flutter:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: { flutter-version: '3.35.0', channel: stable, cache: true }
+      - run: flutter pub get
+        working-directory: giliranbox/app
+      - run: flutter analyze
+        working-directory: giliranbox/app
+      - run: flutter test
+        working-directory: giliranbox/app

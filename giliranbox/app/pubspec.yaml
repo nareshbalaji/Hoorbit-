@@ -1,0 +1,33 @@
+name: giliranbox
+description: GiliranBox - book local services and join shop queues in Malaysia.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.0
+
+# Deliberately small dependency list (size + startup). No UI kit, animation, analytics or font packages.
+dependencies:
+  flutter:
+    sdk: flutter
+  supabase_flutter: ^2.9.0        # auth (phone OTP), PostgREST, realtime
+  sqflite: ^2.4.2                 # local cache (offline bookings/tickets)
+  path_provider: ^2.1.5
+  cached_network_image: ^3.4.1    # thumbnails first, lazy, disk cached
+  google_maps_flutter: ^2.12.0    # ONLY imported by deferred libraries (address picker, live tracking)
+  geolocator: ^14.0.0             # foreground location during active jobs only
+  image_picker: ^1.1.2
+  flutter_image_compress: ^2.4.0  # WebP, < 300 KB before upload
+  url_launcher: ^6.3.1            # Waze / Google Maps / dialer
+  firebase_core: ^3.15.0
+  firebase_messaging: ^15.2.0
+  app_links: ^6.4.0               # giliranbox://pair?code=... from the kiosk QR
+  shared_preferences: ^2.5.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true      # icon font is tree-shaken in release builds
