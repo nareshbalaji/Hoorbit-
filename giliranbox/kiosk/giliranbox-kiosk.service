@@ -1,0 +1,14 @@
+[Unit]
+Description=GiliranBox queue kiosk
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/opt/giliranbox-kiosk
+ExecStart=/usr/bin/python3 kiosk.py /opt/giliranbox-kiosk/config.json
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

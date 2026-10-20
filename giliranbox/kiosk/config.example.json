@@ -1,0 +1,10 @@
+{
+  "supabase_url": "https://YOUR-PROJECT.supabase.co",
+  "anon_key": "YOUR-ANON-KEY",
+  "shop_name": "Gunting Rambut Ah Seng",
+  "port": 8080,
+  "counter_pin": "4821",
+  "printer_device": "/dev/usb/lp0",
+  "button_gpio": 17,
+  "state_db": "/var/lib/giliranbox/kiosk.db"
+}

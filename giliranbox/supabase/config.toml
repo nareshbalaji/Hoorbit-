@@ -1,0 +1,26 @@
+# Supabase local/CLI config (excerpt). Region for hosted project: ap-southeast-1 (Singapore).
+project_id = "giliranbox"
+
+[auth]
+site_url = "giliranbox://auth"
+enable_signup = true
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+# Demo logins: these numbers always accept OTP 123456 (no SMS sent). REMOVE for production.
+[auth.sms.test_otp]
+60123456001 = "123456"
+60123456002 = "123456"
+60123456003 = "123456"
+60123456004 = "123456"
+60123457001 = "123456"
+60123457002 = "123456"
+60123457003 = "123456"
+60123457004 = "123456"
+60123457005 = "123456"
+60123457006 = "123456"
+60123457007 = "123456"
+60123457008 = "123456"
+60123457009 = "123456"
+60123457010 = "123456"
+# Production SMS: configure Twilio/MessageBird/Vonage in the dashboard (+60 numbers).

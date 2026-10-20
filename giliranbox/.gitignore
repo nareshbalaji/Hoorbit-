@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+build/
+.dart_tool/
+app/android/key.properties
+app/android/app/google-services.json
+app/ios/Runner/GoogleService-Info.plist
+kiosk/config.json
+admin/config.local.js
