@@ -13,7 +13,10 @@ Future<void> initBackend() async {
 }
 
 /// Call a Postgres RPC.
-Future<dynamic> rpc(String fn, [Map<String, dynamic>? params]) => sb.rpc(fn, params: params);
+Future<dynamic> rpc(String fn, [Map<String, dynamic>? params]) => rpcOverride != null ? rpcOverride!(fn, params) : sb.rpc(fn, params: params);
+
+/// Test/preview seam: lets the UI be rendered without a backend (see lib/preview_main.dart). Null in production.
+Future<dynamic> Function(String fn, Map<String, dynamic>? params)? rpcOverride;
 
 /// Turn a server error code (e.g. `already_taken`) into localized text.
 String errText(Object e) {

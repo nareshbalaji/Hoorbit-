@@ -16,7 +16,6 @@ class QueuePage extends StatefulWidget {
 
 class _QueuePageState extends State<QueuePage> {
   double? _lat, _lng;
-  bool _located = false;
 
   @override
   void initState() {
@@ -26,7 +25,6 @@ class _QueuePageState extends State<QueuePage> {
         setState(() {
           _lat = p?.latitude;
           _lng = p?.longitude;
-          _located = true;
         });
       }
     });
@@ -35,9 +33,9 @@ class _QueuePageState extends State<QueuePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(title: Text(tr('queue_shop'))),
-        body: !_located
-            ? const SkelList()
-            : Swr<List<Map<String, dynamic>>>(
+        // Never block on GPS: the list loads at once (cache first); distances appear when the fix arrives.
+        body: Swr<List<Map<String, dynamic>>>(
+                key: ValueKey(_lat),
                 cacheKey: 'shops',
                 fetch: () => rpc('nearby_shops', {'p_lat': _lat, 'p_lng': _lng, 'p_limit': 20}),
                 decode: (j) => (j as List).map((e) => Map<String, dynamic>.from(e as Map)).toList(),
